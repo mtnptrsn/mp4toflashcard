@@ -1,14 +1,14 @@
-#### **Description**
-
 This script converts an MP4 file into a set of flashcards in CSV format. It extracts audio from the MP4 file, transcribes it using the Whisper model, and then uses OpenAI's GPT-4 to generate flashcards from the transcribed text.
 
 #### **Prerequisites**
 
-- Python 3 installed
+- Python 3
+- FFMPEG
+- OPENAI API Key
 
 #### **Installation**
 
-1. **Install required packages:** Run `pip install -r requirements.txt` in the script's directory.
+1. **Install required Python packages:** Run `pip install -r requirements.txt` in the script's directory.
 
 #### **Setting up Environment Variables**
 
