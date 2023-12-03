@@ -2,6 +2,19 @@
 
 This script converts an MP4 file into a set of flashcards in CSV format. It extracts audio from the MP4 file, transcribes it using the Whisper model, and then uses OpenAI's GPT-4 to generate flashcards from the transcribed text.
 
+#### Example
+
+Using this video: https://www.youtube.com/watch?v=Tn6-PIqc4UM (React in 100 Seconds by Fireship) generates this output:
+
+| Question                                                    | Answer                                            |
+| :---------------------------------------------------------- | :------------------------------------------------ |
+| What is React?                                              | A JavaScript library for building user interfaces |
+| Who developed React?                                        | Facebook                                          |
+| When was React released?                                    | 2013                                              |
+| What are React components?                                  | Logical, reusable parts of the UI                 |
+| What syntax does React use to combine JavaScript with HTML? | JSX                                               |
+| How do you pass data into a React component?                | Using a props argument                            |
+
 #### **Prerequisites**
 
 - Python 3
