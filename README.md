@@ -1,3 +1,5 @@
+# mp4toflashcard
+
 This script converts an MP4 file into a set of flashcards in CSV format. It extracts audio from the MP4 file, transcribes it using the Whisper model, and then uses OpenAI's GPT-4 to generate flashcards from the transcribed text.
 
 #### **Prerequisites**
