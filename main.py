@@ -7,9 +7,12 @@ import openai
 from halo import Halo
 import requests
 
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(ROOT_DIR, "prompt.txt"), "r") as file:
+    PROMPT = file.read()
+
 MP3_TMP_PATH = "/tmp/transcript.mp3"
 TXT_TMP_PATH = "/tmp/transcript.txt"
-PROMPT = open("prompt.txt", "r").read()
 
 
 def is_url(s):
