@@ -92,6 +92,7 @@ def mp4_to_mp3(mp4_file, mp3_file, start_time, duration):
     ).run(overwrite_output=True, capture_stdout=True, capture_stderr=True)
 
 
+@Halo(text="Generating flashcards with ChatGPT...", spinner="dots")
 def text_to_flashcards(text):
     response = openai.ChatCompletion.create(
         model="gpt-4-1106-preview",  # or the specific model you want to use
@@ -110,20 +111,18 @@ if not os.getenv("OPENAI_API_KEY"):
     raise Exception("OPENAI_API_KEY environment variable is not set")
 
 
+@Halo(text="Getting transcript...", spinner="dots")
 def get_transcript(input, starttime, duration, language):
     if input.endswith(".mp4"):
-        with Halo(text="Converting mp4 to mp3", spinner="dots"):
-            mp4_to_mp3(input, MP3_TMP_PATH, starttime, duration)
-        with Halo(text="Converting mp3 to text", spinner="dots"):
-            return mp3_to_text(MP3_TMP_PATH, language)
+        mp4_to_mp3(input, MP3_TMP_PATH, starttime, duration)
+        return mp3_to_text(MP3_TMP_PATH, language)
 
     if input.endswith(".txt"):
         with open(input, "r") as file:
             return file.read()
 
     if is_url(input):
-        with Halo(text="Downloading file", spinner="dots"):
-            return download_file(input, "text/plain")
+        return download_file(input, "text/plain")
 
     raise Exception("Unsupported file format. Please provide an MP4 or TXT file.")
 
@@ -137,8 +136,7 @@ transcript = get_transcript(
     language=args.language,
 )
 
-with Halo(text="Generating flashcards", spinner="dots"):
-    flashcards_csv = text_to_flashcards(transcript)
+flashcards_csv = text_to_flashcards(transcript)
 
 with open(args.output, "w") as file:
     file.write(flashcards_csv)
